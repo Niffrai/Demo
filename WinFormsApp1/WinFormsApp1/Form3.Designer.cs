@@ -53,6 +53,7 @@
             label1.Size = new Size(80, 30);
             label1.TabIndex = 1;
             label1.Text = "Заказы";
+            label1.Click += label1_Click;
             // 
             // button1
             // 

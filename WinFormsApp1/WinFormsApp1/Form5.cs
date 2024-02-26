@@ -32,6 +32,13 @@ namespace WinFormsApp1
             string password = textBox2.Text;
             string fullName = textBox4.Text;
 
+            // Проверка наличия значений в полях
+            if (string.IsNullOrWhiteSpace(role) || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(fullName))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля.");
+                return; // Прекращаем выполнение метода, так как не все поля заполнены
+            }
+
             // Создание SQL-запроса для вставки новой записи
             string query = "INSERT INTO Rabotnik (Роль, Логин, Пароль, ФИ) VALUES (@Role, @Login, @Password, @FullName)";
 
@@ -66,6 +73,7 @@ namespace WinFormsApp1
                     MessageBox.Show("Ошибка при добавлении новой записи: " + ex.Message);
                 }
             }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -80,9 +88,12 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 loginForm = new Form2();
-            loginForm.ShowDialog();
-            this.Close();
+
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
