@@ -60,6 +60,7 @@
             ClientSize = new Size(554, 347);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form4";
             Text = "Form4";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

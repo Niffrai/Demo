@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     public partial class Form2 : Form
     {
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\as31l\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Database1.mdf;Integrated Security=True";
+        private string connectionString = Form1.connectionString;
         public Form2()
         {
             InitializeComponent();
@@ -62,34 +62,11 @@ namespace WinFormsApp1
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form5 loginForm = new Form5();
             loginForm.ShowDialog();
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)

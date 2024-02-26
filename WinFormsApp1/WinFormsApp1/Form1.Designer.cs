@@ -51,7 +51,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(128, 23);
             textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -59,7 +58,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(128, 23);
             textBox2.TabIndex = 2;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 
@@ -69,7 +67,6 @@
             label1.Size = new Size(41, 15);
             label1.TabIndex = 3;
             label1.Text = "Логин";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -90,9 +87,9 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

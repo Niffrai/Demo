@@ -28,7 +28,7 @@ namespace WinFormsApp1
             timer.Tick += Timer_Tick;
             timer.Start();
         }
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\as31l\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Database1.mdf;Integrated Security=True";
+        private string connectionString = Form1.connectionString;
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

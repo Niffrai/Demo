@@ -17,7 +17,7 @@ namespace WinFormsApp1
         {
             InitializeComponent();
         }
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\as31l\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Database1.mdf;Integrated Security=True";
+        private string connectionString = Form1.connectionString;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -32,8 +32,15 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<string> selectedItems = new List<string>();
+            foreach (var item in checkedListBox1.CheckedItems)
+            {
+                selectedItems.Add(item.ToString());
+            }
+
+            string selectedItemsString = string.Join(", ", selectedItems);
             // Проверка, что поля не пустые перед вставкой в таблицу zakaz
-            if (!string.IsNullOrEmpty(comboBox1.Text) && !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(comboBox2.Text))
+            if (!string.IsNullOrEmpty(selectedItemsString) && !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(comboBox2.Text))
             {
                 string query = "INSERT INTO zakaz (Блюдо, Человек, Стол, СтатусОплаты) VALUES (@Value1, @Value2, @Value3, @Value4)";
 
@@ -41,58 +48,45 @@ namespace WinFormsApp1
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Добавляем параметры к запросу
-                        command.Parameters.AddWithValue("@Value1", comboBox1.Text);
+                        command.Parameters.AddWithValue("@Value1", selectedItemsString);
                         command.Parameters.AddWithValue("@Value2", textBox1.Text);
                         command.Parameters.AddWithValue("@Value3", textBox2.Text);
                         command.Parameters.AddWithValue("@Value4", comboBox2.Text);
 
-                        // Открываем соединение и выполняем запрос
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
                     }
                 }
-            }
-            else
-            {
-                // Вывод сообщения об ошибке или другая логика обработки пустых полей
-                MessageBox.Show("Все поля должны быть заполнены", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Проверка, что поля не пустые перед вставкой в таблицу zakaz_vrem
-            if (!string.IsNullOrEmpty(comboBox1.Text) && !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(comboBox2.Text))
-            {
                 string querys = "INSERT INTO zakaz_vrem (Блюдо, Человек, Стол, СтатусОплаты) VALUES (@Value1, @Value2, @Value3, @Value4)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(querys, connection))
                     {
-                        // Добавляем параметры к запросу
-                        command.Parameters.AddWithValue("@Value1", comboBox1.Text);
+                        command.Parameters.AddWithValue("@Value1", selectedItemsString);
                         command.Parameters.AddWithValue("@Value2", textBox1.Text);
                         command.Parameters.AddWithValue("@Value3", textBox2.Text);
                         command.Parameters.AddWithValue("@Value4", comboBox2.Text);
 
-                        // Открываем соединение и выполняем запрос
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
                     }
                 }
+                selectedItems.Clear();
+                checkedListBox1.ClearSelected();
+                textBox1.Clear();
+                textBox2.Clear();
+
+                MessageBox.Show("Данные успешно добавлены в базу данных.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Вывод сообщения об ошибке или другая логика обработки пустых полей
                 MessageBox.Show("Все поля должны быть заполнены", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private void Form6_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

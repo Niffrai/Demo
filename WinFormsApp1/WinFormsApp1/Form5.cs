@@ -13,16 +13,11 @@ namespace WinFormsApp1
 {
     public partial class Form5 : Form
     {
-        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\as31l\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Database1.mdf;Integrated Security=True";
+        private string connectionString = Form1.connectionString;
 
         public Form5()
         {
             InitializeComponent();
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -32,14 +27,24 @@ namespace WinFormsApp1
             string password = textBox2.Text;
             string fullName = textBox4.Text;
 
-            // Проверка наличия значений в полях
             if (string.IsNullOrWhiteSpace(role) || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(fullName))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
-                return; // Прекращаем выполнение метода, так как не все поля заполнены
+                return;
             }
 
-            // Создание SQL-запроса для вставки новой записи
+            if (password.Length < 6 || password.Length > 8)
+            {
+                MessageBox.Show("Пароль должен содержать от 6 до 8 символов.");
+                return;
+            }
+
+            if (!password.Any(char.IsUpper))
+            {
+                MessageBox.Show("Пароль должен содержать хотя бы одну букву верхнего регистра.");
+                return;
+            }
+
             string query = "INSERT INTO Rabotnik (Роль, Логин, Пароль, ФИ) VALUES (@Role, @Login, @Password, @FullName)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -57,7 +62,6 @@ namespace WinFormsApp1
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Новая запись успешно добавлена в базу данных.");
-                        // Очистка полей формы после успешного добавления записи
                         textBox3.Text = "";
                         textBox1.Text = "";
                         textBox2.Text = "";
@@ -74,26 +78,8 @@ namespace WinFormsApp1
                 }
             }
 
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form5_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

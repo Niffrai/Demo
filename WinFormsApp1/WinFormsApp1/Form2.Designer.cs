@@ -52,7 +52,6 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(494, 260);
             dataGridView1.TabIndex = 4;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // dataGridView2
             // 
@@ -81,7 +80,6 @@
             label6.Size = new Size(46, 15);
             label6.TabIndex = 15;
             label6.Text = "Заказы";
-            label6.Click += label6_Click;
             // 
             // button1
             // 
@@ -89,7 +87,7 @@
             button1.Name = "button1";
             button1.Size = new Size(187, 44);
             button1.TabIndex = 16;
-            button1.Text = "Регистриация пользователя";
+            button1.Text = "Регистрация пользователя";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -173,6 +171,7 @@
             Controls.Add(label5);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form2";
             Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

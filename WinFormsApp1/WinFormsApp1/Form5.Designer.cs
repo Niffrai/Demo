@@ -65,7 +65,6 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(128, 23);
             textBox3.TabIndex = 19;
-            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label2
             // 
@@ -91,7 +90,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(128, 23);
             textBox2.TabIndex = 16;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -99,7 +97,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(128, 23);
             textBox1.TabIndex = 15;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button4
             // 
@@ -142,9 +139,9 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button4);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form5";
             Text = "Form5";
-            Load += Form5_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -73,6 +73,7 @@
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form3";
             Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
